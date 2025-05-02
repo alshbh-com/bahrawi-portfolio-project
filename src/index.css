@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,87 +9,46 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 142 100% 48%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
+    --primary: 142 100% 48%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -96,6 +58,71 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-gray-100 font-cairo;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.98));
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold mb-6 text-white relative inline-block;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply block absolute bottom-0 left-0 w-full h-0.5 bg-neon rounded-full;
+    box-shadow: 0 0 8px theme('colors.neon.DEFAULT');
+  }
+
+  .neon-border {
+    @apply border border-neon/50 shadow-lg;
+    box-shadow: 0 0 5px theme('colors.neon.DEFAULT');
+  }
+
+  .neon-button {
+    @apply bg-black text-neon border border-neon px-5 py-3 rounded-md font-medium transition-all duration-300;
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+  }
+  
+  .neon-button:hover {
+    @apply bg-neon/10;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+  }
+
+  .nav-link {
+    @apply relative px-3 py-2 text-gray-300 transition-colors duration-300 hover:text-neon;
+  }
+
+  .nav-link.active {
+    @apply text-neon font-medium;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-neon transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  .timeline-item {
+    @apply relative pl-6 pb-10 border-l border-gray-700;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    @apply absolute top-0 left-[-8px] w-4 h-4 rounded-full bg-neon;
+    box-shadow: 0 0 5px theme('colors.neon.DEFAULT');
+  }
+  
+  .timeline-content {
+    @apply ml-4 animate-fade-in opacity-0;
+    animation-delay: calc(var(--animation-delay) * 0.1s);
+  }
+
+  .card-hover {
+    @apply transition-transform duration-300 hover:scale-105;
   }
 }
